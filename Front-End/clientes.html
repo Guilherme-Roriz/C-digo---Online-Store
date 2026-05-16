@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprar | Budega do Atila</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <p class="etiqueta">Controle interno</p>
+      <h1>Comprar</h1>
+    </div>
+    <nav class="menu" aria-label="Navegacao principal">
+      <a class="menu-link" href="index.html">Estoque</a>
+      <a class="menu-link ativo" href="clientes.html">Comprar</a>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <section class="resumo" aria-label="Resumo da compra">
+      <article class="cartao">
+        <span>Item selecionado</span>
+        <strong id="resumo-item">-</strong>
+      </article>
+      <article class="cartao">
+        <span>Quantidade</span>
+        <strong id="resumo-quantidade">0</strong>
+      </article>
+      <article class="cartao">
+        <span>Total</span>
+        <strong id="resumo-total">R$ 0,00</strong>
+      </article>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-secao">
+        <div>
+          <p class="etiqueta">Compra</p>
+          <h2>Informar pedido</h2>
+        </div>
+      </div>
+
+      <form class="formulario formulario-compra" id="form-compra" action="/api/compras" method="post">
+        <label>
+          Nome
+          <input type="text" name="comprador_nome" placeholder="Ex.: Maria Silva" required>
+        </label>
+
+        <label>
+          Produto
+          <select name="produto_id" id="produto-compra" required>
+            <option value="">Carregando produtos...</option>
+          </select>
+        </label>
+
+        <label>
+          Quantidade
+          <input type="number" name="quantidade" id="quantidade-compra" min="1" step="1" value="1" required>
+        </label>
+
+        <label>
+          Pagamento
+          <select name="forma_pagamento" required>
+            <option value="pix">Pix</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="cartao">Cartao</option>
+            <option value="fiado">Fiado</option>
+          </select>
+        </label>
+
+        <label>
+          Observacao
+          <input type="text" name="observacao" placeholder="Ex.: Retirar no intervalo">
+        </label>
+
+        <button class="botao-principal" type="submit">Confirmar compra</button>
+      </form>
+
+      <p class="aviso" id="mensagem-compra">
+        A compra sera enviada para o back-end em <strong>/api/compras</strong>, registrando a venda e baixando o estoque.
+      </p>
+    </section>
+  </main>
+  <script src="compra.js"></script>
+</body>
+</html>

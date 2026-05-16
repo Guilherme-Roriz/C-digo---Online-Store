@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budega do Atila</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <p class="etiqueta">Controle interno</p>
+      <h1>Budega do Atila</h1>
+    </div>
+    <nav class="menu" aria-label="Navegacao principal">
+      <a class="menu-link ativo" href="index.html">Estoque</a>
+      <a class="menu-link" href="clientes.html">Comprar</a>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <section class="resumo" aria-label="Resumo da loja">
+      <article class="cartao">
+        <span>Itens cadastrados</span>
+        <strong id="total-itens">0</strong>
+      </article>
+      <article class="cartao">
+        <span>Unidades em estoque</span>
+        <strong id="total-unidades">0</strong>
+      </article>
+      <article class="cartao">
+        <span>Valor em estoque</span>
+        <strong id="valor-estoque">R$ 0,00</strong>
+      </article>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-secao">
+        <div>
+          <p class="etiqueta">Cadastro</p>
+          <h2>Adicionar item</h2>
+        </div>
+      </div>
+
+      <form class="formulario" id="form-produto" action="#" method="post">
+        <label>
+          Nome do item
+          <input type="text" name="nome" placeholder="Ex.: Refrigerante lata" required>
+        </label>
+
+        <label>
+          Descricao
+          <input type="text" name="descricao" placeholder="Ex.: 350 ml">
+        </label>
+
+        <label>
+          Quantidade
+          <input type="number" name="quantidade" min="0" step="1" value="0" required>
+        </label>
+
+        <label>
+          Preco
+          <input type="number" name="preco" min="0" step="0.01" placeholder="0,00" required>
+        </label>
+
+        <button class="botao-principal" type="submit">Salvar item</button>
+      </form>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-secao">
+        <div>
+          <p class="etiqueta">Estoque</p>
+          <h2>Itens da lojinha</h2>
+        </div>
+        <input class="busca" id="busca-produto" type="search" placeholder="Buscar item">
+      </div>
+
+      <div class="tabela-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Descricao</th>
+              <th>Quantidade</th>
+              <th>Preco</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-produtos">
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-secao">
+        <div>
+          <p class="etiqueta">Historico</p>
+          <h2>Ultimas compras</h2>
+        </div>
+        <button class="botao-secundario" id="atualizar-compras" type="button">Atualizar</button>
+      </div>
+
+      <div class="tabela-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Comprador</th>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Total</th>
+              <th>Pagamento</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-compras">
+            <tr>
+              <td colspan="6" class="sem-resultados">Carregando ultimas compras...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
