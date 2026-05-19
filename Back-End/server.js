@@ -1,9 +1,18 @@
+
+/* Importa o módulo path do Node.js */
+/* Importa o framework Express, para criar o servidor HTTP e definir rotas (endpoints) */
+/* Importa o pacotemysql12 para conectar e executar queries no banco MySQL */
 const path = require('path');
 const express = require('express');
 const mysql = require('mysql2/promise');
 
+/* Cria a aplicação Expresse, para configurar rotas */
+/* Define a porta do servdor */
+
 const app = express();
 const porta = process.env.PORT || 3000;
+
+/* Cria 10 conexões com o MySQL */
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
@@ -15,8 +24,13 @@ const pool = mysql.createPool({
   connectionLimit: 10
 });
 
+/* Middleware */
+/* serve arquivos estáticos a partir do mesmo diretório do script */
+
 app.use(express.json());
 app.use(express.static(__dirname));
+
+/* Define uma rota para carreagar os produtos */
 
 app.get('/api/produtos', async (req, res) => {
   try {
@@ -32,6 +46,8 @@ app.get('/api/produtos', async (req, res) => {
     res.status(500).json({ erro: 'Nao foi possivel carregar os produtos.' });
   }
 });
+
+/* Rota para carregar as compras */
 
 app.get('/api/compras', async (req, res) => {
   try {
@@ -55,6 +71,8 @@ app.get('/api/compras', async (req, res) => {
     res.status(500).json({ erro: 'Nao foi possivel carregar as compras.' });
   }
 });
+
+/* Rota para registrar uma nova compra */
 
 app.post('/api/compras', async (req, res) => {
   const {
@@ -86,9 +104,13 @@ app.post('/api/compras', async (req, res) => {
   }
 });
 
+/* Rota para enviar uma compra */
+
 app.get('/comprar', (req, res) => {
   res.sendFile(path.join(__dirname, 'clientes.html'));
 });
+
+/* Inicia o servidor HTTP na porta defnida */ 
 
 app.listen(porta, () => {
   console.log(`Budega do Atila rodando em http://localhost:${porta}`);

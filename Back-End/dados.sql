@@ -1,8 +1,12 @@
+/* Criação do BD */
+
 CREATE DATABASE IF NOT EXISTS budega_do_atila
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
 USE budega_do_atila;
+
+/* Criação de tabela */
 
 CREATE TABLE IF NOT EXISTS produtos (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -54,6 +58,8 @@ CREATE TABLE IF NOT EXISTS compras (
   CONSTRAINT chk_compras_valor_total CHECK (valor_total >= 0)
 );
 
+/* Criação de índices*/
+
 CREATE INDEX idx_produtos_nome ON produtos (nome);
 CREATE INDEX idx_movimentacoes_produto_id ON movimentacoes_estoque (produto_id);
 CREATE INDEX idx_movimentacoes_criado_em ON movimentacoes_estoque (criado_em);
@@ -71,6 +77,8 @@ ON DUPLICATE KEY UPDATE
 DROP PROCEDURE IF EXISTS registrar_compra;
 
 DELIMITER //
+
+/* Criaçao do processo de compra no banco */
 
 CREATE PROCEDURE registrar_compra (
   IN p_comprador_nome VARCHAR(120),
