@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="label">Internal control</p>
+      <h1>E-Commerce</h1>
+    </div>
+    <nav class="menu" aria-label="Main navigation">
+      <a class="menu-link active" href="index.html">Inventory</a>
+      <a class="menu-link" href="purchase.html">Purchase</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <section class="summary" aria-label="Store summary">
+      <article class="card">
+        <span>Registered items</span>
+        <strong id="total-items">0</strong>
+      </article>
+      <article class="card">
+        <span>Units in stock</span>
+        <strong id="total-units">0</strong>
+      </article>
+      <article class="card">
+        <span>Inventory value</span>
+        <strong id="inventory-value">R$0.00</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <p class="label">Registration</p>
+          <h2>Add item</h2>
+        </div>
+      </div>
+
+      <form class="form" id="product-form" action="#" method="post">
+        <label>
+          Item name
+          <input type="text" name="name" placeholder="Ex.: Soda can" required>
+        </label>
+
+        <label>
+          Description
+          <input type="text" name="description" placeholder="Ex.: 350 ml">
+        </label>
+
+        <label>
+          Quantity
+          <input type="number" name="quantity" min="0" step="1" value="0" required>
+        </label>
+
+        <label>
+          Price
+          <input type="number" name="price" min="0" step="0.01" placeholder="0.00" required>
+        </label>
+
+        <button class="primary-button" type="submit">Save item</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <p class="label">Inventory</p>
+          <h2>Items</h2>
+        </div>
+        <input class="search" id="product-search" type="search" placeholder="Search item">
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="products-table">
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <p class="label">History</p>
+          <h2>Latest purchases</h2>
+        </div>
+        <button class="secondary-button" id="refresh-purchases" type="button">Refresh</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Buyer</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Payment</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="purchases-table">
+            <tr>
+              <td colspan="6" class="empty-results">Loading latest purchases...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

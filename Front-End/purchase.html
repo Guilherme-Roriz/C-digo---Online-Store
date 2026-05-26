@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase | Guilherme´s Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="label">Internal control</p>
+      <h1>Purchase</h1>
+    </div>
+    <nav class="menu" aria-label="Main navigation">
+      <a class="menu-link" href="index.html">Inventory</a>
+      <a class="menu-link active" href="purchase.html">Purchase</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <section class="summary" aria-label="Purchase summary">
+      <article class="card">
+        <span>Selected item</span>
+        <strong id="summary-item">-</strong>
+      </article>
+      <article class="card">
+        <span>Quantity</span>
+        <strong id="summary-quantity">0</strong>
+      </article>
+      <article class="card">
+        <span>Total</span>
+        <strong id="summary-total">R$0.00</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <p class="label">Purchase</p>
+          <h2>Enter order</h2>
+        </div>
+      </div>
+
+      <form class="form purchase-form" id="purchase-form" action="/api/purchases" method="post">
+        <label>
+          Name
+          <input type="text" name="buyer_name" placeholder="Ex.: Maria Silva" required>
+        </label>
+
+        <label>
+          Product
+          <select name="product_id" id="purchase-product" required>
+            <option value="">Loading products...</option>
+          </select>
+        </label>
+
+        <label>
+          Quantity
+          <input type="number" name="quantity" id="purchase-quantity" min="1" step="1" value="1" required>
+        </label>
+
+        <label>
+          Payment
+          <select name="payment_method" required>
+            <option value="pix">Pix</option>
+            <option value="cash">Cash</option>
+            <option value="card">Card</option>
+            <option value="credit">Credit</option>
+          </select>
+        </label>
+
+        <label>
+          Note
+          <input type="text" name="note" placeholder="Ex.: Pick up during break">
+        </label>
+
+        <button class="primary-button" type="submit">Confirm purchase</button>
+      </form>
+
+      <p class="notice" id="purchase-message">
+        The purchase will be sent to the back end at <strong>/api/purchases</strong>, recording the sale and reducing inventory.
+      </p>
+    </section>
+  </main>
+  <script src="purchase.js"></script>
+</body>
+</html>
